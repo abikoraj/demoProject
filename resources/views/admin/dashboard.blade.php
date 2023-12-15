@@ -1,5 +1,5 @@
 @extends('admin.layout')
 
 @section('content')
-<h1>This is the Test Page.</h1>
+<h1>Admin Dashboard</h1>
 @endsection
