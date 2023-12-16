@@ -12,7 +12,7 @@
 
 <div class="container py-4">
 
-    <h2>Users</h2>
+    <h2>Suppliers</h2>
     <hr>
     @if (session()->has('message'))
     <div class="alert alert-success alert-dismissible fade show " role="alert">
@@ -21,21 +21,17 @@
     </div>
     @endif
 
-    <h5 class="text-muted">Add New User</h5>
-    <form action="{{ route('admin.user.submit') }}" method="post">
+    <h5 class="text-muted">Add Supplier</h5>
+    <form action="{{ route('admin.supplier.submit') }}" method="post">
         @csrf
         <div class="row gy-2">
             <div class="col-lg-3 col-md-12 col-sm-12">
-                <input type="text" name="name" class="form-control" placeholder="Enter Username" required value="{{ old('name') }}">
+                <input type="text" name="name" class="form-control" placeholder="Enter Suppiler Name" required value="{{ old('name') }}">
                 <span class="text-danger">@error('name'){{ $message }} @enderror</span>
             </div>
             <div class="col-lg-3 col-md-12 col-sm-12">
-                <input type="number" name="phone" class="form-control" placeholder="Enter Phone Number" required value="{{ old('phone') }}">
-                <span class="text-danger">@error('phone'){{ $message }} @enderror</span>
-            </div>
-            <div class="col-lg-3 col-md-12 col-sm-12">
-                <input type="password" name="password" class="form-control" placeholder=" Enter Password" minlength="8" required>
-                <span class="text-danger">@error('password'){{ $message }} @enderror</span>
+                <input type="number" name="contact" class="form-control" placeholder="Enter Contact" required value="{{ old('contact') }}">
+                <span class="text-danger">@error('contact'){{ $message }} @enderror</span>
             </div>
 
             <div class="col-md-2 col-sm-12">
@@ -45,7 +41,7 @@
     </form>
 
     <hr class="mt-4">
-    <h5 class="text-muted d-inline">Users List </h5>
+    <h5 class="text-muted d-inline">Supplier List </h5>
     <!-- <small class="text-muted ">(10 Entries)</small> -->
 
     <div>
@@ -58,7 +54,7 @@
                     Name
                 </th>
                 <th>
-                    Phone
+                    Contact
                 </th>
                 <th>
                     Action
@@ -68,23 +64,23 @@
                 </th>
             </tr>
 
-            @foreach ($users as $user)
+            @foreach ($suppliers as $supplier)
             <tr>
-                <form action="{{ route('admin.user.update', ['user' => $user->id]) }}" method="POST">
+                <form action="{{ route('admin.supplier.update', ['supplier' => $supplier->id]) }}" method="POST">
 
                     @csrf
                     <td>
-                        {{ $user->id }}
+                        {{ $supplier->id }}
                     </td>
                     <td>
-                        <input type="text" class="form-control" name="name" placeholder="Username" required value="{{ $user->name }}">
+                        <input type="text" class="form-control" name="name" placeholder="Username" required value="{{ $supplier->name }}">
                     </td>
                     <td>
-                        <input type="number" class="form-control" name="phone" placeholder="Phone" required value="{{ $user->phone }}">
+                        <input type="number" class="form-control" name="contact" placeholder="contact" required value="{{ $supplier->contact }}">
                     </td>
                     <td>
                         <input type="submit" class=" btn btn-primary" value="Update">
-                        <a href="{{ route('admin.user.delete', ['user'=> $user->id]) }}" class="btn btn-danger">
+                        <a href="{{ route('admin.supplier.delete', ['supplier'=> $supplier->id]) }}" class="btn btn-danger">
                             Delete</a>
                     </td>
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,5 +41,20 @@ Route::middleware(['role:1'])->group(function () {
             Route::post('/update/{user}', [UserController::class, 'update'])->name('.update');
             Route::get('/delete/{user}', [UserController::class, 'delete'])->name('.delete');
         });
+
+        Route::prefix('category')->name('category')->group(function(){
+            Route::get('/', [CategoryController::class, 'index']);
+            Route::post('/submit', [CategoryController::class, 'submit'])->name('.submit');
+            Route::post('/update/{category}', [CategoryController::class, 'update'])->name('.update');
+            Route::get('/delete/{category}', [CategoryController::class, 'delete'])->name('.delete');
+        });
+
+        Route::prefix('supplier')->name('supplier')->group(function(){
+            Route::get('/', [SupplierController::class, 'index']);
+            Route::post('/submit', [SupplierController::class, 'submit'])->name('.submit');
+            Route::post('/update/{supplier}', [SupplierController::class, 'update'])->name('.update');
+            Route::get('/delete/{supplier}', [SupplierController::class, 'delete'])->name('.delete');
+        });
+        
     });
 });

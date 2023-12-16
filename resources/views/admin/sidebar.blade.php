@@ -8,13 +8,23 @@
         </li>
         <hr class="text-white side-hr">
         <li>
-            <a href="#" class="nav-link text-white active">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link text-white {{ Route::is('admin.dashboard') ? 'active': '' }}">
                 <i class="bi bi-speedometer2"></i> <span class="ms-1 side-name ">Dashboard</span>
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link text-white active">
-                <i class="bi bi-speedometer2"></i> <span class="ms-1 side-name ">Home</span>
+            <a href="{{ route('admin.user') }}" class="nav-link text-white {{ Route::is('admin.user') ? 'active': '' }}">
+                <i class="bi bi-people"></i> <span class="ms-1 side-name ">Users</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('admin.category') }}" class="nav-link text-white {{ Route::is('admin.category') ? 'active': '' }}">
+                <i class="bi bi-columns-gap"></i> <span class="ms-1 side-name ">Categories</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('admin.supplier') }}" class="nav-link text-white {{ Route::is('admin.supplier') ? 'active': '' }}">
+                <i class="bi bi-columns-gap"></i> <span class="ms-1 side-name ">Suppliers</span>
             </a>
         </li>
 
