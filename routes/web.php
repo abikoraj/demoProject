@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,14 @@ Route::prefix('user')->name('user.')->group(function () {
 
 Route::middleware(['role:2'])->group(function(){
 
-    Route::get('user/dashboard', [UserController::class, 'userDashboard'])->name('user.dashboard');
+    Route::prefix('user')->name('user.')->group(function(){
+        Route::get('/dashboard', [UserController::class, 'userDashboard'])->name('dashboard');
+        Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+    });
+
+    Route::prefix('product')->name('product.')->group(function(){
+        Route::get('/add', [ProductController::class,'add'])->name('add');
+    });
 });
 
 Route::middleware(['role:1'])->group(function () {
@@ -34,6 +42,8 @@ Route::middleware(['role:1'])->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/dashboard', [UserController::class, 'adminDashboard'])->name('dashboard');
+        Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+
 
         Route::prefix('users')->name('user')->group(function () {
             Route::get('/', [UserController::class, 'index']);

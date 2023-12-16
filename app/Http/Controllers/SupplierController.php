@@ -18,7 +18,7 @@ class SupplierController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'contact' => 'required'
+            'contact' => 'required|starts_with:98,97|digits:10'
         ]);
         $supplier = new Supplier();
         $supplier->name = $request->name;
@@ -32,7 +32,7 @@ class SupplierController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'contact' => 'required'
+            'contact' => 'required|starts_with:98,97|digits:10'
         ]);
         $supplier->name = $request->name;
         $supplier->contact = $request->contact;

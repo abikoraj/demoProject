@@ -65,9 +65,10 @@ class UserController extends Controller
         return back()->with('message', 'User Updated Successfully!');
     }
 
-    public function delete(User $user) {
+    public function delete(User $user)
+    {
         $user->delete();
-        return back()->with('message','User Deleted Successfully!');
+        return back()->with('message', 'User Deleted Successfully!');
     }
 
     public function userDashboard()
@@ -78,5 +79,13 @@ class UserController extends Controller
     public function adminDashboard()
     {
         return view('admin.dashboard');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('user.login');
     }
 }

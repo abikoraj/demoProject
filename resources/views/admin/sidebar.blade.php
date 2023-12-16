@@ -27,6 +27,11 @@
                 <i class="bi bi-columns-gap"></i> <span class="ms-1 side-name ">Suppliers</span>
             </a>
         </li>
+        <li>
+            <a href="{{ route('admin.logout') }}" class="nav-link text-white">
+                <i class="bi bi-power"></i> <span class="ms-1 side-name ">Logout</span>
+            </a>
+        </li>
 
     </ul>
 
