@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if (!Auth::user()) {
+        return redirect()->route('user.login');
+    }else {
+        if (Auth::user()->role == 1) {
+            return redirect()->route('admin.dashboard');
+        } else {
+            return redirect()->route('user.dashboard');
+        }
+        
+    }
+    return redirect();
 });
 
 Route::prefix('user')->name('user.')->group(function () {
@@ -33,7 +44,11 @@ Route::middleware(['role:2'])->group(function(){
     });
 
     Route::prefix('product')->name('product.')->group(function(){
+        Route::get('/', [ProductController::class,'index'])->name('index');
         Route::get('/add', [ProductController::class,'add'])->name('add');
+        Route::post('/submit', [ProductController::class,'submit'])->name('submit');
+        Route::get('/edit/{product}', [ProductController::class, 'edit'])->name('edit');
+        Route::post('/update', [ProductController::class, 'update'])->name('update');
     });
 });
 

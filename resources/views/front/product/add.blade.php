@@ -15,7 +15,7 @@
                 <h2>Add New Product</h2>
                 <hr class="my-4">
             </div>
-            <form action="" method="POST" class="needs-validation" novalidate>
+            <form action="{{ route('product.submit') }}" method="POST" class="needs-validation" novalidate>
                 @csrf
                 <div class="row">
                     <div class="col-md-4 mb-2">
@@ -35,8 +35,8 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-2">
-                        <label for="city_id" class="form-label">Unit</label>
-                        <select class="form-select" id="country" name="city_id" required>
+                        <label for="unit" class="form-label">Unit</label>
+                        <select class="form-select" id="country" name="unit" required>
                             <option value="">Choose...</option>
                             @foreach (\App\Helper::getUnit() as $key => $unit)
                             <option value="{{ $key }}">{{ $unit }}</option>
@@ -55,8 +55,8 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <label for="country" class="form-label">Supplier</label>
-                        <select class="form-select" id="country" name="blood_group" required>
+                        <label for="supplier_id" class="form-label">Supplier</label>
+                        <select class="form-select" id="supplier_id" name="supplier_id" required>
                             <option value="">Choose...</option>
                             @foreach (App\Models\Supplier::all() as $supplier)
                                 <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
@@ -68,8 +68,8 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label for="country" class="form-label">Category</label>
-                        <select class="form-select" id="country" name="blood_group" required>
+                        <label for="category_id" class="form-label">Category</label>
+                        <select class="form-select" id="category_id" name="category_id" required>
                             <option value="">Choose...</option>
                             @foreach (App\Models\Category::all() as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
